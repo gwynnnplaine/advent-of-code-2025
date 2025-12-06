@@ -1,0 +1,22 @@
+{
+  "name": "advent-of-code-2025",
+  "module": "index.ts",
+  "author": {
+    "name": "Vladyslav Hrabovyi",
+    "url": "https://github.com/gwynnnplaine"
+  },
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun index.ts",
+    "dev:watch": "bun --watch index.ts",
+    "test": "bun test",
+    "test:watch": "bun --watch test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
