@@ -75,8 +75,8 @@ export class SecretEntrance {
     if (currentPosition === 0) {
       return [newPosition, fullRotations]
     }
-    
-    if (this.#calculateModulo(amount) < currentPosition) {
+
+    if (left < currentPosition) {
       return [newPosition, fullRotations]
     }
 
@@ -92,7 +92,7 @@ export class SecretEntrance {
       return [newPosition, fullRotations]
     }
     
-    if (this.#calculateModulo(amount) < (THRESHOLD - currentPosition)) {
+    if (left < (THRESHOLD - currentPosition)) {
       return [newPosition, fullRotations]
     }
 
