@@ -1,7 +1,13 @@
 import type { Rotation } from "./day-1/rotation.type";
 import { SecretEntrance } from "./day-1/secret-entrance";
+import { GiftShop } from './day-2/gift-shop';
 
-const rotations = await Bun.file(`${import.meta.dir}/challenges/day-1/puzzle-input.txt`).text().then(text => text.split("\n").map(line => line.trim()).filter(line => line.length > 0)) as Rotation[]
+const rotations = await Bun.file(`${import.meta.dir}/day-1/input.txt`).text().then(text => text.split("\n").map(line => line.trim()).filter(line => line.length > 0)) as Rotation[]
 const SecretEntranceProblem = new SecretEntrance(rotations)
 
 console.log(`[Day 1] Secret Entrance password is: ${await SecretEntranceProblem.guessPassword()}`)
+
+const productIdsRanges = await Bun.file(`${import.meta.dir}/day-2/input.txt`).text()
+const GiftShopProblem = new GiftShop(productIdsRanges)
+
+console.log(`[Day 2] Sum of invalid product IDs is: ${GiftShopProblem.sum()}`)
