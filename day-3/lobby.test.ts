@@ -11,4 +11,10 @@ describe("Lobby", async () => {
 
         expect(lobby.solvePartOne()).toBe(EXPECTED_TOTAL_OUTPUT_JOLTS)
     })
+
+    it("should correct calculate total output joltage (part two)", async () => {
+        const EXPECTED_TOTAL_OUTPUT_JOLTS_PART_TWO = 3121910778619
+
+        expect(lobby.solvePartTwo()).toBe(EXPECTED_TOTAL_OUTPUT_JOLTS_PART_TWO)
+    })
 })

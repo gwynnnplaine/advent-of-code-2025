@@ -23,7 +23,7 @@ const days = [
         day: 3,
         solver: async () => {
             const text = await Bun.file(`${import.meta.dir}/day-3/input.txt`).text()
-            return new Lobby(text).solvePartOne()
+            return new Lobby(text).solvePartTwo()
         }
     }
 ]
