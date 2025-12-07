@@ -10,4 +10,4 @@ console.log(`[Day 1] Secret Entrance password is: ${await SecretEntranceProblem.
 const productIdsRanges = await Bun.file(`${import.meta.dir}/day-2/input.txt`).text()
 const GiftShopProblem = new GiftShop(productIdsRanges)
 
-console.log(`[Day 2] Sum of invalid product IDs is: ${GiftShopProblem.sum()}`)
+console.log(`[Day 2] Sum of invalid product IDs is: ${GiftShopProblem.solvePartTwo()}`)

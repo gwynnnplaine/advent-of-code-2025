@@ -7,12 +7,12 @@ export class GiftShop {
     this.#productIdsRanges = this.#parseProductIdsText(productIdsText)
   }
 
-  sum(): number {
-    const invalidIds = this.#productIdsRanges.flatMap(range => this.#generateInvalidIdsInRange(range))
+  solvePartOne(): number {
+    const invalidIds = this.#productIdsRanges.flatMap(range => this.#generateIdsForTwoRepeats(range))
     return invalidIds.reduce((acc, curr) => acc + curr, 0)
   }
 
-  #generateInvalidIdsInRange([start, end]: ProductIdsRange): number[] {
+  #generateIdsForTwoRepeats([start, end]: ProductIdsRange): number[] {
     const possibleIds: number[] = []
     const maxPatternLength = Math.floor(String(end).length / 2)
 
@@ -32,6 +32,36 @@ export class GiftShop {
     return possibleIds
   }
 
+  solvePartTwo(): number {
+    const invalidIds = this.#productIdsRanges.flatMap(range => this.#generateIdsForRepeats(range))
+    const uniqueInvalidIds = Array.from(new Set(invalidIds))
+    return uniqueInvalidIds.reduce((acc, curr) => acc + curr, 0)
+  }
+
+  #generateIdsForRepeats([start, end]: ProductIdsRange): number[] {
+    const possibleIds: number[] = []
+    const maxPatternLength = Math.floor(String(end).length / 2)
+
+    for (let i = 1; i <= maxPatternLength; i++) {
+      for (let n = 2; n <= Math.floor(String(end).length / i); n++) {
+        const minBase = 10 ** (i - 1)
+        const maxBase = (10 ** i) - 1
+
+        for (let base = minBase; base <= maxBase; base++) {
+          const result = base * this.#calculateMultiplier(i, n)
+          if (result >= start && result <= end) {
+            possibleIds.push(result)
+          }
+        }
+      }
+    }
+
+    return possibleIds
+  }
+
+  #calculateMultiplier(i: number, n: number): number {
+    return (10 ** (i * n) - 1) / (10 ** i - 1)
+  }
 
   #parseProductIdsText(productIdsText: string): ProductIdsRange[] {
     return productIdsText.trim().split(",")
