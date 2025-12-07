@@ -2,6 +2,7 @@ import type { Rotation } from "./day-1/rotation.type";
 import { SecretEntrance } from "./day-1/secret-entrance";
 import { GiftShop } from './day-2/gift-shop';
 import { Lobby } from "./day-3/lobby";
+import { PrintingDepartment } from "./day-4/printing-department";
 
 const days = [
     {
@@ -25,6 +26,13 @@ const days = [
             const text = await Bun.file(`${import.meta.dir}/day-3/input.txt`).text()
             return new Lobby(text).solvePartTwo()
         }
+    },
+    {
+        day: 4,
+        solver: async () => {
+            const text = await Bun.file(`${import.meta.dir}/day-4/input.txt`).text()
+            return new PrintingDepartment(text).solvePartOne()
+        },
     }
 ]
 
