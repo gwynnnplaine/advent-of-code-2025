@@ -8,13 +8,11 @@ describe("Cafeteria", async () => {
 
     it("should correct calculate fresh ingredients (part one)", () => {
         const EXPECTED_RESULT_PART_ONE = 3
-
         expect(cafeteria.solvePartOne()).toBe(EXPECTED_RESULT_PART_ONE)
-
     })
 
-    it.skip("should correct calculate fresh ingredients (part two)", () => {
-        // const EXPECTED_RESULT_PART_TWO = 43
-        // expect(cafeteria.solvePartTwo()).toBe(EXPECTED_RESULT_PART_TWO)
+    it("should correct calculate fresh ingredients (part two)", () => {
+        const EXPECTED_RESULT_PART_TWO = 14
+        expect(cafeteria.solvePartTwo()).toBe(EXPECTED_RESULT_PART_TWO)
     })
 })
