@@ -3,17 +3,35 @@ import { SecretEntrance } from "./day-1/secret-entrance";
 import { GiftShop } from './day-2/gift-shop';
 import { Lobby } from "./day-3/lobby";
 
-const rotations = await Bun.file(`${import.meta.dir}/day-1/input.txt`).text().then(text => text.split("\n").map(line => line.trim()).filter(line => line.length > 0)) as Rotation[]
-const SecretEntranceProblem = new SecretEntrance(rotations)
+const days = [
+    {
+        day: 1,
+        solver: async () => {
+            const rotations = await Bun.file(`${import.meta.dir}/day-1/input.txt`).text()
+                .then(text => text.split("\n").map(line => line.trim()).filter(line => line.length > 0)) as Rotation[]
+            return new SecretEntrance(rotations).guessPassword()
+        }
+    },
+    {
+        day: 2,
+        solver: async () => {
+            const productIdsRanges = await Bun.file(`${import.meta.dir}/day-2/input.txt`).text()
+            return new GiftShop(productIdsRanges).solvePartTwo()
+        }
+    },
+    {
+        day: 3,
+        solver: async () => {
+            const text = await Bun.file(`${import.meta.dir}/day-3/input.txt`).text()
+            return new Lobby(text).solvePartOne()
+        }
+    }
+]
 
-console.log(`[Day 1] Secret Entrance password is: ${await SecretEntranceProblem.guessPassword()}`)
+const dayArg = process.argv[2] ? parseInt(process.argv[2], 10) : null
 
-const productIdsRanges = await Bun.file(`${import.meta.dir}/day-2/input.txt`).text()
-const GiftShopProblem = new GiftShop(productIdsRanges)
-
-console.log(`[Day 2] Sum of invalid product IDs is: ${GiftShopProblem.solvePartTwo()}`)
-
-
-const LobbyProblem = new Lobby(await Bun.file(`${import.meta.dir}/day-3/input.txt`).text())
-
-console.log(`[Day 3] Total output joltage is: ${LobbyProblem.solvePartOne()}`)
+for (const { day, solver } of days) {
+    if (dayArg && day !== dayArg) continue
+    const result = await solver()
+    console.log(`[Day ${day}] Result: ${result}`)
+}
