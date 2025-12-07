@@ -13,7 +13,10 @@ describe("Printing Department", async () => {
 
     })
 
-    it("should correct calculate total output joltage (part two)", async () => {
+    it("should correct calculate rolls of paper (part two)", () => {
+        const EXPECTED_RESULT_PART_TWO = 43
+
+        expect(printingDepartment.solvePartTwo()).toBe(EXPECTED_RESULT_PART_TWO)
 
     })
 })

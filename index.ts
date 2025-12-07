@@ -31,7 +31,7 @@ const days = [
         day: 4,
         solver: async () => {
             const text = await Bun.file(`${import.meta.dir}/day-4/input.txt`).text()
-            return new PrintingDepartment(text).solvePartOne()
+            return new PrintingDepartment(text).solvePartTwo()
         },
     }
 ]

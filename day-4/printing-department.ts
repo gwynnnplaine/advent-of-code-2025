@@ -40,6 +40,62 @@ export class PrintingDepartment {
         return totalRefinedPapers
     }
 
+    solvePartTwo(): number {
+        let totalRemoved = 0
+
+        while (true) {
+            const cellsToRemove: number[][] = []
+
+            for (let x = 0; x < this.#rolls.length; x++) {
+                for (let y = 0; y < this.#rolls[x]!.length; y++) {
+                    let cell = this.#rolls[x]![y]!
+
+                    if (!this.#isRollOfPaper(cell)) continue
+
+                    let papersInCell = 0
+
+                    for (const direction of this.#getDirections()) {
+                        const adjacentX = x + direction.x
+                        const adjacentY = y + direction.y
+
+                        if (adjacentX < 0 || adjacentX >= this.#rolls.length) continue
+                        if (adjacentY < 0 || adjacentY >= this.#rolls[adjacentX]!.length) continue
+
+                        let adjacentCell = this.#rolls[adjacentX]![adjacentY]!
+
+                        if (!this.#isRollOfPaper(adjacentCell)) {
+                            continue
+                        }
+
+                        papersInCell++
+                    }
+
+                    if (this.#isBelowThreshold(papersInCell)) {
+                        cellsToRemove.push([x, y])
+                        continue
+                    }
+                }
+            }
+
+            if (cellsToRemove.length === 0) {
+                return totalRemoved
+            }
+
+            for (const [x, y] of cellsToRemove) {
+                this.#modifyRow(x!, y!, ".")
+                totalRemoved++
+            }
+
+            continue
+        }
+    }
+
+    #modifyRow(x: number, y: number, newChar: string): void {
+        const row = this.#rolls[x]!.split("")
+        row[y] = newChar
+        this.#rolls[x]! = row.join("")
+    }
+
     #isRollOfPaper(roll: string): boolean {
         return roll === "@"
     }
