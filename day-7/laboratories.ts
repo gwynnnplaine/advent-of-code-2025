@@ -64,8 +64,31 @@ export class Laboratories {
   }
 
   solvePartTwo(input: string): number {
-    let beams = 0
+    const pathCounts = new Array(input.split("\n").length).fill(0).map(() => new Array(input.split("\n")[0]!.length).fill(0))
 
-    return beams
+    const grid = input.split("\n").filter(line => line.trim() !== "")
+
+    const startPosition = grid[0]!.indexOf("S")
+
+    pathCounts[1]![startPosition] = 1;
+
+    for (let row = 1; row < grid.length; row++) {
+      for (let col = 0; col < grid[0]!.length; col++) {
+
+        if (grid[row - 1]![col] === ".") {
+          pathCounts[row]![col] += pathCounts[row - 1]![col]
+        }
+
+        if (col > 0 && grid[row - 1]![col - 1] === "^") {
+          pathCounts[row]![col] += pathCounts[row - 1]![col - 1]
+        }
+
+        if (grid[row - 1]![col + 1] === "^" && col < grid[0]!.length - 1) {
+          pathCounts[row]![col] += pathCounts[row - 1]![col + 1]
+        }
+      }
+    }
+
+    return pathCounts[grid.length - 1]!.reduce((a, b) => a + b, 0)
   }
 }

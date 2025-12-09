@@ -11,8 +11,8 @@ describe("Laboratories", async () => {
     expect(laboratories.solvePartOne(sampleInput)).toBe(EXPECTED_RESULT_PART_ONE)
   })
 
-  // it("should correct calculate grand total of adding together all of the answers to the individual problems  (part two)", () => {
-  //   const EXPECTED_RESULT_PART_TWO = 3263827
-  //   expect(laboratories.solvePartTwo(sampleInput)).toBe(EXPECTED_RESULT_PART_TWO)
-  // })
+  it("should correct calculate how many times the beam be splitted (part two)", () => {
+    const EXPECTED_RESULT_PART_TWO = 40
+    expect(laboratories.solvePartTwo(sampleInput)).toBe(EXPECTED_RESULT_PART_TWO)
+  })
 })
