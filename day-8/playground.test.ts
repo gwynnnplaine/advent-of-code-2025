@@ -11,8 +11,8 @@ describe("Playground", async () => {
     expect(playground.solvePartOne(sampleInput, 10)).toBe(EXPECTED_RESULT_PART_ONE)
   })
 
-  it.skip("should correct calculate junction boxes (part two)", () => {
-    const EXPECTED_RESULT_PART_TWO = 40
+  it("should correct calculate junction boxes (part two)", () => {
+    const EXPECTED_RESULT_PART_TWO = 25272
     expect(playground.solvePartTwo(sampleInput)).toBe(EXPECTED_RESULT_PART_TWO)
   })
 })
