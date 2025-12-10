@@ -6,6 +6,7 @@ import { PrintingDepartment } from "./day-4/printing-department";
 import { Cafeteria } from "./day-5/cafeteria";
 import { TrashCompactor } from "./day-6/trash-compactor";
 import { Laboratories } from "./day-7/laboratories";
+import { Playground } from "./day-8/playground";
 
 const days = [
   {
@@ -56,7 +57,14 @@ const days = [
     solver: async () => {
       const text = await Bun.file(`${import.meta.dir}/day-7/input.txt`).text()
       return new Laboratories().solvePartTwo(text)
-    }
+    },
+  },
+  {
+    day: 8,
+    solver: async () => {
+      const text = await Bun.file(`${import.meta.dir}/day-8/input.txt`).text()
+      return new Playground().solvePartOne(text, 1000)
+    },
   }
 ]
 
